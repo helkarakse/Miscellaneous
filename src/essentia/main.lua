@@ -3,7 +3,7 @@
 	Essentia Main Version 0.1 Dev
 	Do not modify, copy or distribute without permission of author
 	Helkarakse, 20131209
-]]
+	]]
 
 -- Libraries
 os.loadAPI("functions")
@@ -12,17 +12,40 @@ os.loadAPI("functions")
 local jarType = "tilejar"
 local mfrRednetType = "factoryredstonecable"
 local modem
-local modemFrequency = 1
+local modemFrequency = 1, rsSide = "right"
+
+-- Rednet Configuration
+local mfrCable = {
+	{ aspect = "Ignis", color = colors.orange},
+	{ aspect = "Aqua", color = colors.magenta}
+}
 
 -- Functions
+local function getCableColor(searchAspect)
+	for key, value in pairs(mfrCable) do
+		if (value.aspect == searchAspect) then
+			return value.color
+		end
+	end
+
+	return 0
+end
+
+local function activateRedstone(array)
+	-- iterate through the array and add the colors needed for the output activation
+	local sumColor = 0
+	for key, value in pairs(array) do
+		local cableColor = getCableColor(value)
+		sumColor = sumColor + cableColor
+	end
+	redstone.setBundledOutput(rsSide, sumColor)
+end
+
 local modemHandler = function()
 	while true do
 		local _, side, freq, rfreq, message = os.pullEvent('modem_message')
 		functions.debug("Message received from modem: ", message)
-		local array = textutils.unserialize(message)
-		for key, value in pairs(array) do
-			functions.debug(value)
-		end
+		activateRedstone(textutils.unserialize(message))
 	end
 end
 
@@ -32,7 +55,7 @@ local function init()
 		modem = peripheral.wrap(modemDir)
 		modem.open(modemFrequency)
 	end
-	
+
 	parallel.waitForAll(modemHandler)
 end
 
