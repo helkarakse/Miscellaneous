@@ -11,7 +11,7 @@
 -- File array of github links
 local fileArray = {
 	{link = "https://raw.github.com/helkarakse/LuaLibs/master/src/common/functions.lua", file = "functions"},
-	{link = "https://raw.github.com/helkarakse/Miscellaneous/master/src/essentia/main.lua", file = "main"}
+	{link = "https://raw.github.com/helkarakse/Miscellaneous/master/projects/essentia/main.lua", file = "main"}
 }
 
 -- This filename is the file that will be executed
