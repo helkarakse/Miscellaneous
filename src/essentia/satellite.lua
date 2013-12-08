@@ -42,9 +42,11 @@ local refreshLoop = function()
 		end
 		
 		-- check if the arrayPacket array has entries
-		if (#arrayPacket ~= 0) then
+		if (functions.getTableCount(arrayPacket) > 0) then
 			functions.debug("Transmitting modem message containing aspects which are not full")
 			modem.transmit(modemFrequency, modemFrequency, textutils.serialize(arrayPacket))
+			-- clear the array packet for next check
+			arrayPacket = {}
 		end
 		sleep(30)
 	end
