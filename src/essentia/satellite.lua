@@ -50,7 +50,7 @@ local function init()
 	end
 	
 	initJars()
---	parallel.waitForAll(refreshLoop)
+	parallel.waitForAll(refreshLoop)
 end
 
 init()
