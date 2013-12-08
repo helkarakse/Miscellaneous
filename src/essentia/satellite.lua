@@ -35,7 +35,7 @@ local refreshLoop = function()
 			local aspects = value.getAspects()
 			local quantity = aspects[1].quantity
 			
-			if (quantity < 64) then
+			if (quantity == 64) then
 --				functions.debug("Less than 64 essentia detected in jar of type: ", aspects[1].name)
 				table.insert(arrayPacket, aspects[1].name)
 			end
@@ -43,7 +43,7 @@ local refreshLoop = function()
 		
 		-- check if the arrayPacket array has entries
 		if (functions.getTableCount(arrayPacket) > 0) then
-			functions.debug("Transmitting modem message containing aspects which are not full")
+			functions.debug("Transmitting modem message containing aspects which are full")
 			modem.transmit(modemFrequency, modemFrequency, textutils.serialize(arrayPacket))
 			-- clear the array packet for next check
 			arrayPacket = {}
