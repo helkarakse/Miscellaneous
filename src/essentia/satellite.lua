@@ -5,4 +5,24 @@
 	Helkarakse, 20131209
 ]]
 
+-- Libraries
+os.loadAPI("functions")
+
+-- Variables
 local peripheralType = "tilejar"
+local modem
+local jars = {}
+
+local refreshLoop = function()
+
+end
+
+local modemHandler = function()
+	
+end
+
+local function init()
+	local hasModem, modemDir = functions.locatePeripheral("modem")
+end
+
+init()
