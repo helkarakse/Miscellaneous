@@ -9,7 +9,7 @@
 os.loadAPI("functions")
 
 -- Variables
-local peripheralType = "tilejar"
+local jarType = "tilejar"
 local jars = {}
 
 local modem
@@ -18,7 +18,7 @@ local modemFrequency = 1
 -- Functions
 local function initJars()
 	for _, side in pairs(peripheral.getNames()) do
-		if (peripheral.getType(side) == peripheralType) then
+		if (peripheral.getType(side) == jarType) then
 			local jarPeripheral = peripheral.wrap(side)
 			table.insert(jars, jarPeripheral)
 		end
@@ -29,6 +29,15 @@ end
 
 local refreshLoop = function()
 	while true do
+		-- check if any of the jars are not full, ie, not filled with 64 of the aspect
+		for key, value in pairs(jars) do
+			local aspects = value.getAspects()
+			local quantity = aspects[1].quantity
+			
+			if (quantity < 64) then
+				functions.debug("Less than 64 essentia detected in jar of type: ", aspects[1].name)
+			end
+		end
 		sleep(10)
 	end
 end
