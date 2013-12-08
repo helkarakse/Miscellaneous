@@ -48,7 +48,7 @@ local refreshLoop = function()
 			-- clear the array packet for next check
 			arrayPacket = {}
 		end
-		sleep(30)
+		sleep(60)
 	end
 end
 
