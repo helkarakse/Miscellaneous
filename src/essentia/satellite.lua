@@ -1,6 +1,6 @@
 --[[
 
-	Essentia Satellite Version 0.1 Dev
+	Essentia Satellite Version 1.0 Alpha
 	Do not modify, copy or distribute without permission of author
 	Helkarakse, 20131209
 ]]
