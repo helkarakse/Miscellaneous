@@ -21,8 +21,8 @@ local mfrCable = {
 	{ aspect = "Ignis", color = colors.orange},
 	{ aspect = "Aqua", color = colors.magenta},
 	{ aspect = "Bestia", color = colors.white},
-	{ aspect = "Arbor", color = colors.white},
-	{ aspect = "Perfodio", color = colors.white}
+	{ aspect = "Arbor", color = colors.red},
+	{ aspect = "Perfodio", color = colors.yellow}
 }
 
 local detectedAspects = {}
@@ -42,6 +42,7 @@ end
 local function activateRedstone(array)
 	-- iterate through the array and add the colors needed for the output activation
 	local sumColor = redstone.getBundledOutput(rsSide)
+	functions.debug("Current redstone bundled output is: ", sumColor)
 	for key, value in pairs(array) do
 		local cableColor = getCableColor(value)
 		functions.debug("Cable color found, returned as: ", cableColor)
