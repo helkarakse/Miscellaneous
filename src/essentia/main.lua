@@ -22,7 +22,8 @@ local mfrCable = {
 	{ aspect = "Aqua", color = colors.magenta},
 	{ aspect = "Bestia", color = colors.white},
 	{ aspect = "Arbor", color = colors.red},
-	{ aspect = "Perfodio", color = colors.yellow}
+	{ aspect = "Perfodio", color = colors.yellow},
+	{ aspect = "Terra", color = colors.green}
 }
 
 local detectedAspects = {}
