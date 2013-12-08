@@ -58,6 +58,8 @@ local function init()
 		modem.open(modemFrequency)
 	end
 
+	-- reset the redstone outputs
+	redstone.setBundledOutput(rsSide, 0)
 	parallel.waitForAll(modemHandler)
 end
 
