@@ -89,24 +89,28 @@ local function getLowAspects()
 	return lowAspects
 end
 
--- local function activateRedstone(array)
--- 	-- iterate through the array and add the colors needed for the output activation
--- 	local sumColor = redstone.getBundledOutput(rsSide)
--- 	functions.debug("Current redstone bundled output is: ", sumColor)
--- 	for key, value in pairs(array) do
--- 		local cableColor = getCableColor(value)
--- 		functions.debug("Cable color found, returned as: ", cableColor)
--- 		sumColor = sumColor + cableColor
--- 	end
--- 	redstone.setBundledOutput(rsSide, sumColor)
--- end
+local function activateRedstone(array)
+	-- reset the bundled cable
+	redstone.setBundledOutput(rsSide, 0)
+	-- iterate through the array and add the colors needed for the output activation
+	local sumColor = 0
+	functions.debug("Current redstone bundled output is: ", sumColor)
+	for key, value in pairs(array) do
+		local cableColor = getCableColor(value)
+		functions.debug("Cable color found, returned as: ", cableColor)
+		sumColor = sumColor + cableColor
+	end
+	redstone.setBundledOutput(rsSide, sumColor)
+end
 
 local refreshLoop = function()
 	while true do
 		-- iterate through the master table and look for aspects that are not full
 		local lowAspects = getLowAspects()
-		functions.debug("The following aspects are low: ", textutils.serialize(lowAspects))
-		sleep(15)
+		-- functions.debug("The following aspects are low: ", textutils.serialize(lowAspects))
+		-- iterate through lowAspects and enable the redstone outputs that are low
+		activateRedstone(lowAspects)
+		sleep(30)
 	end
 end
 
