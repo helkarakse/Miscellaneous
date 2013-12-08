@@ -13,7 +13,7 @@ local jarType = "tilejar"
 local jars = {}
 
 local modem
-local modemFrequency = 1
+local modemFrequency = os.getComputerID() + 50
 
 -- Functions
 local function initJars()
@@ -30,23 +30,15 @@ end
 local refreshLoop = function()
 	local arrayPacket = {}
 	while true do
-		-- check if any of the jars are not full, ie, not filled with 64 of the aspect
+		-- build packet for transmission
 		for key, value in pairs(jars) do
 			local aspects = value.getAspects()
-			local quantity = aspects[1].quantity
-			
-			if (quantity == 64) then
---				functions.debug("Less than 64 essentia detected in jar of type: ", aspects[1].name)
-				table.insert(arrayPacket, aspects[1].name)
-			end
+			table.insert(arrayPacket, {name = aspects[1].name, quantity = aspects[1].quantity})
 		end
 		
-		-- check if the arrayPacket array has entries
-		if (functions.getTableCount(arrayPacket) > 0) then
-			functions.debug("Transmitting modem message containing aspects which are full")
-			modem.transmit(modemFrequency, modemFrequency, textutils.serialize(arrayPacket))
-			-- clear the array packet for next check
-			arrayPacket = {}
+		modem.transmit(modemFrequency, modemFrequency, textutils.serialize(arrayPacket))
+		-- clear the array packet
+		arrayPacket = {}
 		end
 		sleep(60)
 	end
