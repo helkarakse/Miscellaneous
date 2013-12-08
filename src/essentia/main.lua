@@ -19,10 +19,10 @@ local modem
 -- Rednet Configuration
 local mfrCable = {
 	{ aspect = "Ignis", color = colors.orange},
-	{ aspect = "Aqua", color = colors.magenta},
-	{ aspect = "Bestia", color = colors.white},
-	{ aspect = "Arbor", color = colors.red},
-	{ aspect = "Perfodio", color = colors.yellow},
+	{ aspect = "Aqua", color = colors.lightBlue},
+	{ aspect = "Bestia", color = colors.brown},
+	{ aspect = "Arbor", color = colors.cyan},
+	{ aspect = "Perfodio", color = colors.gray},
 	{ aspect = "Terra", color = colors.green}
 }
 
