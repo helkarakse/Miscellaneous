@@ -39,7 +39,7 @@ local refreshLoop = function()
 		modem.transmit(modemFrequency, modemFrequency, textutils.serialize(arrayPacket))
 		-- clear the array packet
 		arrayPacket = {}
-		sleep(60)
+		sleep(30)
 	end
 end
 
