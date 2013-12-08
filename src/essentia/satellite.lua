@@ -13,7 +13,7 @@ local jarType = "tilejar"
 local jars = {}
 
 local modem
-local modemFrequency = os.getComputerID() + 50
+local modemFrequency = 1
 
 -- Functions
 local function initJars()
@@ -39,7 +39,6 @@ local refreshLoop = function()
 		modem.transmit(modemFrequency, modemFrequency, textutils.serialize(arrayPacket))
 		-- clear the array packet
 		arrayPacket = {}
-		end
 		sleep(60)
 	end
 end
