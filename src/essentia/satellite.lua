@@ -12,6 +12,9 @@ os.loadAPI("functions")
 local peripheralType = "tilejar"
 local jars = {}
 
+local modem
+local modemFrequency = 1
+
 -- Functions
 local function initJars()
 	for _, side in pairs(peripheral.getNames()) do
