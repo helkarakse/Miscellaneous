@@ -25,8 +25,11 @@ local mfrCable = {
 	{ aspect = "Perfodio", color = colors.white}
 }
 
+local detectedAspects = {}
+
 -- Functions
 local function getCableColor(searchAspect)
+	functions.debug("Searching the mfrCable array for the aspect: ", searchAspect)
 	for key, value in pairs(mfrCable) do
 		if (value.aspect == searchAspect) then
 			return value.color
@@ -41,6 +44,7 @@ local function activateRedstone(array)
 	local sumColor = redstone.getBundledOutput(rsSide)
 	for key, value in pairs(array) do
 		local cableColor = getCableColor(value)
+		functions.debug("Cable color found, returned as: ", cableColor)
 		sumColor = sumColor + cableColor
 	end
 	redstone.setBundledOutput(rsSide, sumColor)
@@ -50,7 +54,8 @@ local modemHandler = function()
 	while true do
 		local _, side, freq, rfreq, message = os.pullEvent('modem_message')
 		functions.debug("Message received from modem: ", message)
-		activateRedstone(textutils.unserialize(message))
+		local messageTable = textutils.unserialize(message)
+		activateRedstone(messageTable)
 	end
 end
 
