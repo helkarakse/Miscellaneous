@@ -129,7 +129,7 @@ local function init()
 
 	-- reset the redstone outputs
 	redstone.setBundledOutput(rsSide, 0)
-	parallel.waitForAll(modemHandler)
+	parallel.waitForAll(modemHandler, refreshLoop)
 end
 
 init()
