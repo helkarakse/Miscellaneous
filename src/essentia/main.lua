@@ -16,6 +16,9 @@ local rsSide = "right"
 
 local modem
 
+-- User settings
+local refreshDelay = 30
+
 -- Rednet Configuration
 local mfrCable = {
 	{ aspect = "Ignis", color = colors.orange},
@@ -110,7 +113,7 @@ local refreshLoop = function()
 		-- functions.debug("The following aspects are low: ", textutils.serialize(lowAspects))
 		-- iterate through lowAspects and enable the redstone outputs that are low
 		activateRedstone(lowAspects)
-		sleep(30)
+		sleep(refreshDelay)
 	end
 end
 

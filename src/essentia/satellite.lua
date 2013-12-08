@@ -15,6 +15,9 @@ local jars = {}
 local modem
 local modemFrequency = 1
 
+-- User settings
+local refreshDelay = 30
+
 -- Functions
 local function initJars()
 	for _, side in pairs(peripheral.getNames()) do
@@ -39,7 +42,7 @@ local refreshLoop = function()
 		modem.transmit(modemFrequency, modemFrequency, textutils.serialize(arrayPacket))
 		-- clear the array packet
 		arrayPacket = {}
-		sleep(30)
+		sleep(refreshDelay)
 	end
 end
 
