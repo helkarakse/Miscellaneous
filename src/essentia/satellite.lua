@@ -28,6 +28,7 @@ local function initJars()
 end
 
 local refreshLoop = function()
+	local arrayPacket = {}
 	while true do
 		-- check if any of the jars are not full, ie, not filled with 64 of the aspect
 		for key, value in pairs(jars) do
@@ -35,10 +36,17 @@ local refreshLoop = function()
 			local quantity = aspects[1].quantity
 			
 			if (quantity < 64) then
-				functions.debug("Less than 64 essentia detected in jar of type: ", aspects[1].name)
+--				functions.debug("Less than 64 essentia detected in jar of type: ", aspects[1].name)
+				table.insert(arrayPacket, aspects[1].name)
 			end
 		end
-		sleep(10)
+		
+		-- check if the arrayPacket array has entries
+		if (#arrayPacket ~= 0) then
+			functions.debug("Transmitting modem message containing aspects which are not full")
+			modem.transmit(modemFrequency, modemFrequency, textutils.serialize(arrayPacket))
+		end
+		sleep(30)
 	end
 end
 
