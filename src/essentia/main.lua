@@ -11,8 +11,10 @@ os.loadAPI("functions")
 -- Variables
 local jarType = "tilejar"
 local mfrRednetType = "factoryredstonecable"
+local modemFrequency = 1
+local rsSide = "right"
+
 local modem
-local modemFrequency = 1, rsSide = "right"
 
 -- Rednet Configuration
 local mfrCable = {
