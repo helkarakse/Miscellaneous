@@ -35,7 +35,7 @@ end
 
 local function activateRedstone(array)
 	-- iterate through the array and add the colors needed for the output activation
-	local sumColor = 0
+	local sumColor = redstone.getBundledOutput(rsSide)
 	for key, value in pairs(array) do
 		local cableColor = getCableColor(value)
 		sumColor = sumColor + cableColor
