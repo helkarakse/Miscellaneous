@@ -35,7 +35,7 @@ local refreshLoop = function()
 	while true do
 		-- build packet for transmission
 		for key, value in pairs(jars) do
-			table.insert(arrayPacket, {name = value.getAspects(), quantity = value.getAspectCount()})
+			table.insert(arrayPacket, {name = value.getAspects(), quantity = value.getAspectCount(value.getAspects())})
 		end
 		
 		modem.transmit(modemFrequency, modemFrequency, textutils.serialize(arrayPacket))
