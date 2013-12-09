@@ -9,7 +9,7 @@
 os.loadAPI("functions")
 
 -- Variables
-local jarType = "tilejar"
+local jarType = "tt_aspectContainer"
 local jars = {}
 
 local modem
