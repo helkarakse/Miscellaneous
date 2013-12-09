@@ -21,12 +21,12 @@ local refreshDelay = 30
 
 -- Rednet Configuration
 local mfrCable = {
-	{ aspect = "Ignis", color = colors.orange},
-	{ aspect = "Aqua", color = colors.lightBlue},
-	{ aspect = "Bestia", color = colors.brown},
-	{ aspect = "Arbor", color = colors.cyan},
-	{ aspect = "Perfodio", color = colors.gray},
-	{ aspect = "Terra", color = colors.green}
+	{ aspect = "ignis", color = colors.orange},
+	{ aspect = "aqua", color = colors.lightBlue},
+	{ aspect = "bestia", color = colors.brown},
+	{ aspect = "arbor", color = colors.cyan},
+	{ aspect = "perfodio", color = colors.gray},
+	{ aspect = "terra", color = colors.green}
 }
 
 local masterAspects = {}
