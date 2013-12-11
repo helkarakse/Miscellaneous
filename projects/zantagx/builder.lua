@@ -185,13 +185,14 @@ local function placeForward(distance)
 			doRefuel()
 		end
 		
-		local success = turtle.forward()
-		if (success == false) then
-			displayBlocked()
-			io.read()
-		else
-			getNextSlot()
-			turtle.placeDown()
+		local success = false
+		
+		while not success do
+			success = turtle.forward()
+			if not success then
+				displayBlocked()
+				io.read()
+			end
 		end
 	end
 end
