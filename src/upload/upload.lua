@@ -18,7 +18,9 @@ local urlPush = "http://www.otegamers.com/custom/helkarakse/upload.php"
 local uploadLoop = function()
 	while true do
 		-- only push the document if it changes
+		functions.debug("Checking file size of file")
 		if (fs.getSize(fileName) ~= currentFileSize) then
+			functions.debug("File size is different, pushing...")
 			-- check if the file exists
 			if (fs.exists(fileName)) then
 				-- file exists, store in outputText in preparation to send
