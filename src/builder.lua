@@ -18,22 +18,29 @@ local tonumber = tonumber
 local io = io
 
 -- Functions
-local function getNextSlot()
-	while turtle.getItemCount(currentSlot) < 1 do
-		currentSlot = (currentSlot % 16) + 1
-	end
-	turtle.select(currentSlot)
-end
-
 local function checkInventoryEmpty()
 	local empty = true
-	for i = 1, 16 do
+	for i = 1, 15 do
 		if turtle.getItemCount(i) > 0 then
 			empty = false
 			break
 		end
 	end
 	return empty
+end
+
+local function getNextSlot()
+	if (checkInventoryEmpty() == false) then
+		while turtle.getItemCount(currentSlot) < 1 do
+			currentSlot = (currentSlot % 15) + 1
+		end
+		turtle.select(currentSlot)
+	else
+		print("More materials are required to complete the task.")
+		print("Refill my inventory and press enter to continue.")
+		io.read()
+		currentSlot = 1
+	end
 end
 
 -- Refuel by checking fuel levels then 
@@ -91,9 +98,15 @@ local function placeForward(distance)
 			displayBlocked()
 			io.read()
 		else
-			
+			getNextSlot()
+			turtle.placeDown()
 		end
 	end
+end
+
+local function placeBlock()
+	getNextSlot()
+	turtle.placeDown()
 end
 
 -- Functions (Building)
