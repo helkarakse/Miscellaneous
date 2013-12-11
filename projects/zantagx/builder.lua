@@ -175,10 +175,6 @@ end
 
 -- Functions (Building)
 local function buildPillarCapLayer()
-
-end
-
-local function buildPillarLayer()
 	moveUp()
 	moveUp()
 	moveForward(4)
@@ -205,7 +201,7 @@ local function buildPillarLayer()
 	moveForward(4)
 end
 
-local function buildPillar()
+local function buildPillarLayer()
 	-- move up by one block to place below
 	moveUp()
 	moveForward(4)
@@ -278,7 +274,11 @@ local function init()
 	
 	if (repeats >= 1 and distanceToTravel > 0) then
 		for i = 1, repeats do
-			buildPillar()
+			buildPillarLayer()
+			buildPillarCapLayer()
+			moveForward(distanceToTravel)
+			moveDown()
+			moveDown()
 		end
 	else
 		print("Invalid parameters were provided. Terminating...")
