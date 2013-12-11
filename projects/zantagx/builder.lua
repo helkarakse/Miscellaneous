@@ -31,7 +31,7 @@ local function checkInventoryEmpty()
 end
 
 local function getNextSlot()
-	while (checkInventoryEmpty() == false) do
+	while (checkInventoryEmpty() == true) do
 		print("More materials are required to complete the task.")
 		print("Refill my inventory and press enter to continue.")
 		io.read()
