@@ -32,7 +32,7 @@ local uploadLoop = function()
 			-- update the file size to the new one
 			currentFileSize = fs.getSize(fileName)
 			
-			local response = http.post(urlPush, "cmd=push&json=" .. textutils.urlEncode(outputText) .. "&dim=" .. dimension)
+			local response = http.post(urlPush, "req=push&json=" .. textutils.urlEncode(outputText) .. "&dim=" .. dimension)
 			if (response) then
 				local responseText = response.readAll()
 				functions.debug("HttpPost successful. Response: ", responseText)
