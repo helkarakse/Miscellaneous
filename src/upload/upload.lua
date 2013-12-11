@@ -29,7 +29,7 @@ local uploadLoop = function()
 				file.close()
 			end
 			
-			functions.debug(outputText)
+			functions.debug(textutils.urlEncode(outputText))
 			
 			-- update the file size to the new one
 			currentFileSize = fs.getSize(fileName)
