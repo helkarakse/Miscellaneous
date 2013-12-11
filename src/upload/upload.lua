@@ -10,7 +10,8 @@ os.loadAPI("functions")
 
 local fileName = "profile.txt"
 local dimension = string.sub(os.getComputerLabel(), 1, 1)
-local outputText, currentFileSize
+local outputText
+local currentFileSize = 0
 local uploadDelay = 30
 local urlPush = "http://www.otegamers.com/custom/helkarakse/upload.php"
 
@@ -45,7 +46,6 @@ end
 
 local function init()
 	if (fs.exists(fileName)) then
-		currentFileSize = fs.getSize(fileName)
 		parallel.waitForAll(uploadLoop)
 	end
 end
