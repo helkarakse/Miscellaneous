@@ -176,7 +176,20 @@ local function buildPillar()
 	moveUp()
 	moveForward(4)
 	placeBlock()
-	
+	turnLeft()
+	placeForward(2)
+	turnLeft()
+	moveForward(1)
+	turnRight()
+	moveForward(1)
+	placeBlock()
+	turnLeft()
+	moveForward(1)
+	turnRight()
+	moveForward(1)
+	turnLeft()
+	placeBlock()
+	placeForward(4)
 end
 
 local function init()
@@ -191,7 +204,6 @@ local function init()
 	if (repeats >= 1 and distanceToTravel > 0) then
 		for i = 1, repeats do
 			buildPillar()
-			-- reset the upwards movement
 		end
 	else
 		print("Invalid parameters were provided. Terminating...")
