@@ -190,7 +190,7 @@ local function buildPillarCapLayer()
 		placeBlock()
 		placeForward(8)
 		turnRight()
-		moveForward()
+		moveForward(1)
 		turnRight()
 	end
 	
