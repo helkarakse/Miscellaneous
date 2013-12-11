@@ -31,18 +31,11 @@ local function checkInventoryEmpty()
 end
 
 local function getNextSlot()
-	if (checkInventoryEmpty() == true) then
-		print("More materials are required to complete the task.")
-		print("Refill my inventory and press enter to continue.")
-		io.read()
-		currentSlot = 1
-	else
-		while turtle.getItemCount(currentSlot) < 1 do
-			currentSlot = (currentSlot % 15) + 1
-		end
-	
-		turtle.select(currentSlot)
+	while turtle.getItemCount(currentSlot) < 1 do
+		currentSlot = (currentSlot % 15) + 1
 	end
+
+	turtle.select(currentSlot)
 end
 
 -- Refuel by checking fuel levels
@@ -199,8 +192,15 @@ local function placeForward(distance)
 end
 
 local function placeBlock()
-	getNextSlot()
-	turtle.placeDown()
+	if (checkInventoryEmpty() == true) then
+		print("More materials are required to complete the task.")
+		print("Refill my inventory and press enter to continue.")
+		io.read()
+		currentSlot = 1
+	else
+		getNextSlot()
+		turtle.placeDown()
+	end
 end
 
 -- Functions (Building)
