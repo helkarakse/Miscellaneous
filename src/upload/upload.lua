@@ -41,7 +41,6 @@ local uploadLoop = function()
 				response.close()
 			else
 				functions.debug("Failed to retrieve a response from the server.")
-				response.close()
 			end
 		end
 		functions.debug("File size is the same, continuing loop.")
