@@ -84,12 +84,15 @@ local function moveForward(distance)
 			doRefuel()
 		end
 		
-		while (turtle.forward() == false) do
-			displayBlocked()
-			io.read()
-		end
+		local success = false
 		
-		turtle.forward()
+		while not success do
+			success = turtle.forward()
+			if not success then
+				displayBlocked()
+				io.read()
+			end
+		end
 	end
 end
 
@@ -99,12 +102,15 @@ local function moveBack(distance)
 			doRefuel()
 		end
 		
-		while (turtle.back() == false) do
-			displayBlocked()
-			io.read()
-		end
+		local success = false
 		
-		turtle.back()
+		while not success do
+			success = turtle.back()
+			if not success then
+				displayBlocked()
+				io.read()
+			end
+		end
 	end
 end
 
@@ -113,12 +119,15 @@ local function moveUp()
 		doRefuel()
 	end
 	
-	while (turtle.up() == false) do
-		displayBlocked()
-		io.read()
+	local success = false
+		
+	while not success do
+		success = turtle.up()
+		if not success then
+			displayBlocked()
+			io.read()
+		end
 	end
-	
-	turtle.up()
 end
 
 local function moveDown()
@@ -126,12 +135,15 @@ local function moveDown()
 		doRefuel()
 	end
 	
-	while (turtle.down() == false) do
-		displayBlocked()
-		io.read()
+	local success = false
+		
+	while not success do
+		success = turtle.down()
+		if not success then
+			displayBlocked()
+			io.read()
+		end
 	end
-	
-	turtle.down()
 end
 
 local function turnLeft()
@@ -139,12 +151,15 @@ local function turnLeft()
 		doRefuel()
 	end
 	
-	while (turtle.turnLeft() == false) do
-		displayBlocked()
-		io.read()
+	local success = false
+		
+	while not success do
+		success = turtle.turnLeft()
+		if not success then
+			displayBlocked()
+			io.read()
+		end
 	end
-	
-	turtle.turnLeft()
 end
 
 local function turnRight()
@@ -152,12 +167,15 @@ local function turnRight()
 		doRefuel()
 	end
 	
-	while (turtle.turnRight() == false) do
-		displayBlocked()
-		io.read()
+	local success = false
+		
+	while not success do
+		success = turtle.turnRight()
+		if not success then
+			displayBlocked()
+			io.read()
+		end
 	end
-	
-	turtle.turnRight()
 end
 
 -- Functions (Placement)
