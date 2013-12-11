@@ -188,6 +188,8 @@ local function placeForward(distance)
 				io.read()
 			end
 		end
+		
+		placeBlock()
 	end
 end
 
