@@ -9,9 +9,10 @@
 os.loadAPI("functions")
 
 local fileName = "profile.txt"
+local dimension = string.sub(os.getComputerLabel(), 1, 1)
 local outputText, currentFileSize
 local uploadDelay = 30
-local urlPush = ""
+local urlPush = "http://www.otegamers.com/custom/helkarakse/upload.php"
 
 local uploadLoop = function()
 	while true do
@@ -28,7 +29,7 @@ local uploadLoop = function()
 			-- update the file size to the new one
 			currentFileSize = fs.getSize(fileName)
 			
-			local response = http.post(urlPush, "cmd=push&json=" .. textutils.urlEncode(outputText))
+			local response = http.post(urlPush, "cmd=push&json=" .. textutils.urlEncode(outputText) .. "&dim=" .. dimension)
 			if (response) then
 				local responseText = response.readAll()
 				functions.debug("HttpPost successful. Response: ", responseText)
