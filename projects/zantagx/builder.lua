@@ -117,6 +117,17 @@ local function moveUp()
 	end
 end
 
+local function moveDown()
+	if (needRefuel()) then
+		doRefuel()
+	end
+	
+	if (turtle.down() == false) then
+		displayBlocked()
+		io.read()
+	end
+end
+
 local function turnLeft()
 	if (needRefuel()) then
 		doRefuel()
@@ -168,7 +179,30 @@ local function buildPillarCapLayer()
 end
 
 local function buildPillarLayer()
+	moveUp()
+	moveUp()
+	moveForward(4)
+	turnLeft()
+	moveBack(4)
 	
+	for i = 1, 4 do
+		placeBlock()
+		placeForward(8)
+		turnLeft()
+		moveForward(1)
+		turnLeft()
+		placeBlock()
+		placeForward(8)
+		turnRight()
+		moveForward()
+		turnRight()
+	end
+	
+	placeBlock()
+	placeForward(8)
+	moveBack(4)
+	turnRight()
+	moveForward(4)
 end
 
 local function buildPillar()
@@ -190,6 +224,47 @@ local function buildPillar()
 	turnLeft()
 	placeBlock()
 	placeForward(4)
+	turnLeft()
+	moveForward(1)
+	turnRight()
+	moveForward(1)
+	placeBlock()
+	turnLeft()
+	moveForward(1)
+	turnRight()
+	moveForward(1)
+	turnLeft()
+	placeBlock()
+	placeForward(4)
+	turnLeft()
+	moveForward(1)
+	turnRight()
+	moveForward(1)
+	placeBlock()
+	turnLeft()
+	moveForward(1)
+	turnRight()
+	moveForward(1)
+	turnLeft()
+	placeBlock()
+	placeForward(4)
+	turnLeft()
+	moveForward(1)
+	turnRight()
+	moveForward(1)
+	placeBlock()
+	turnLeft()
+	moveForward(1)
+	turnRight()
+	moveForward(1)
+	turnLeft()
+	placeBlock()
+	moveForward(1)
+	placeBlock()
+	moveForward(1)
+	turnRight()
+	moveBack(4)
+	moveDown()
 end
 
 local function init()
