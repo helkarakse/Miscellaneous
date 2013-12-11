@@ -15,6 +15,26 @@ local currentSlot = 1
 
 -- References
 local tonumber = tonumber
+local io = io
+
+-- Functions
+local function getNextSlot()
+	while turtle.getItemCount(currentSlot) < 1 do
+		currentSlot = (currentSlot % 16) + 1
+	end
+	turtle.select(currentSlot)
+end
+
+local function checkInventoryEmpty()
+	local empty = true
+	for i = 1, 16 do
+		if turtle.getItemCount(i) > 0 then
+			empty = false
+			break
+		end
+	end
+	return empty
+end
 
 -- Refuel by checking fuel levels then 
 local function doRefuel() 
@@ -38,7 +58,48 @@ local function needRefuel()
 	end
 end
 
+local function displayBlocked()
+	print("Path is blocked. Please clear obstruction and press enter to continue.")
+end
+
+-- Functions (Movement)
+local function moveForward(distance)
+	for i = 1, distance do
+		local success = turtle.forward()
+		if (success == false) then
+			displayBlocked()
+			io.read()
+		end
+	end
+end
+
+local function moveBack(distance)
+	for i = 1, distance do
+		local success = turtle.back()
+		if (success == false) then
+			displayBlocked()
+			io.read()
+		end
+	end
+end
+
+-- Functions (Placement)
+local function placeForward(distance)
+	for i = 1, distance do
+		local success = turtle.forward()
+		if (success == false) then
+			displayBlocked()
+			io.read()
+		else
+			
+		end
+	end
+end
+
 -- Functions (Building)
+local function buildPillar()
+	
+end
 
 local function init()
 	if (#args == 0) then
