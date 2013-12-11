@@ -29,6 +29,8 @@ local uploadLoop = function()
 				file.close()
 			end
 			
+			functions.debug(outputText)
+			
 			-- update the file size to the new one
 			currentFileSize = fs.getSize(fileName)
 			
@@ -42,6 +44,7 @@ local uploadLoop = function()
 				response.close()
 			end
 		end
+		functions.debug("File size is the same, continuing loop.")
 		sleep(uploadDelay)
 	end
 end
