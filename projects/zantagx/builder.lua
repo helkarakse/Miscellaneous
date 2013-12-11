@@ -9,6 +9,7 @@
 -- Variables
 local args = {...}
 local distanceToTravel = 0
+local repeats = 1
 
 local fuelSlot = 16
 local currentSlot = 1
@@ -43,16 +44,23 @@ local function getNextSlot()
 	end
 end
 
--- Refuel by checking fuel levels then 
+-- Refuel by checking fuel levels
 local function doRefuel() 
 	-- check if there is fuel first
 	if (turtle.getItemCount(fuelSlot) > 0) then
 		turtle.select(fuelSlot)
 		turtle.refuel(1)
 		turtle.select(currentSlot)
-		return true
 	else
-		return false
+		while (turtle.getItemCount(fuelSlot) == 0) do
+			print("Turtle is out of consumable fuel items. Place fuel in slot: " .. fuelSlot)
+			print("Press enter to continue.")
+			io.read()
+		end
+		
+		turtle.select(fuelSlot)
+		turtle.refuel(1)
+		turtle.select(currentSlot)
 	end
 end
 
@@ -72,6 +80,10 @@ end
 -- Functions (Movement)
 local function moveForward(distance)
 	for i = 1, distance do
+		if (needRefuel()) then
+			doRefuel()
+		end
+		
 		local success = turtle.forward()
 		if (success == false) then
 			displayBlocked()
@@ -82,6 +94,10 @@ end
 
 local function moveBack(distance)
 	for i = 1, distance do
+		if (needRefuel()) then
+			doRefuel()
+		end
+		
 		local success = turtle.back()
 		if (success == false) then
 			displayBlocked()
@@ -90,9 +106,46 @@ local function moveBack(distance)
 	end
 end
 
+local function moveUp()
+	if (needRefuel()) then
+		doRefuel()
+	end
+	
+	if (turtle.up() == false) then
+		displayBlocked()
+		io.read()
+	end
+end
+
+local function turnLeft()
+	if (needRefuel()) then
+		doRefuel()
+	end
+	
+	if (turtle.turnLeft() == false) then
+		displayBlocked()
+		io.read()
+	end
+end
+
+local function turnRight()
+	if (needRefuel()) then
+		doRefuel()
+	end
+	
+	if (turtle.turnRight() == false) then
+		displayBlocked()
+		io.read()
+	end
+end
+
 -- Functions (Placement)
 local function placeForward(distance)
 	for i = 1, distance do
+		if (needRefuel()) then
+			doRefuel()
+		end
+		
 		local success = turtle.forward()
 		if (success == false) then
 			displayBlocked()
@@ -110,16 +163,39 @@ local function placeBlock()
 end
 
 -- Functions (Building)
+local function buildPillarCapLayer()
+
+end
+
+local function buildPillarLayer()
+	
+end
+
 local function buildPillar()
+	-- move up by one block to place below
+	moveUp()
+	moveForward(4)
+	placeBlock()
 	
 end
 
 local function init()
-	if (#args == 0) then
-		print("Missing argument: <program name> <distance>")
+	if (#args < 2) then
+		print("Missing arguments: <program name> <repeats> <distance>")
 		return
 	else
-		distanceToTravel = tonumber(args[1])
+		repeats = tonumber(args[1])
+		distanceToTravel = tonumber(args[2])
+	end
+	
+	if (repeats >= 1 and distanceToTravel > 0) then
+		for i = 1, repeats do
+			buildPillar()
+			-- reset the upwards movement
+		end
+	else
+		print("Invalid parameters were provided. Terminating...")
+		return
 	end
 end
 
