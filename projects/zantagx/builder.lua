@@ -145,6 +145,18 @@ local function turnRight()
 end
 
 -- Functions (Placement)
+local function placeBlock()
+	if (checkInventoryEmpty() == true) then
+		print("More materials are required to complete the task.")
+		print("Refill my inventory and press enter to continue.")
+		io.read()
+		currentSlot = 1
+	else
+		getNextSlot()
+		turtle.placeDown()
+	end
+end
+
 local function placeForward(distance)
 	for i = 1, distance do
 		if (needRefuel()) then
@@ -158,18 +170,6 @@ local function placeForward(distance)
 		else
 			placeBlock()
 		end
-	end
-end
-
-local function placeBlock()
-	if (checkInventoryEmpty() == true) then
-		print("More materials are required to complete the task.")
-		print("Refill my inventory and press enter to continue.")
-		io.read()
-		currentSlot = 1
-	else
-		getNextSlot()
-		turtle.placeDown()
 	end
 end
 
