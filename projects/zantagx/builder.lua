@@ -77,15 +77,11 @@ local function moveForward(distance)
 		if (needRefuel()) then
 			doRefuel()
 		end
-		
-		local success = false
-		
-		while not success do
-			success = turtle.forward()
-			if not success then
-				displayBlocked()
-				io.read()
-			end
+
+		local success = turtle.forward()
+		if (success == false) then
+			displayBlocked()
+			io.read()
 		end
 	end
 end
@@ -96,14 +92,10 @@ local function moveBack(distance)
 			doRefuel()
 		end
 		
-		local success = false
-		
-		while not success do
-			success = turtle.back()
-			if not success then
-				displayBlocked()
-				io.read()
-			end
+		local success = turtle.back()
+		if (success == false) then
+			displayBlocked()
+			io.read()
 		end
 	end
 end
@@ -113,14 +105,9 @@ local function moveUp()
 		doRefuel()
 	end
 	
-	local success = false
-		
-	while not success do
-		success = turtle.up()
-		if not success then
-			displayBlocked()
-			io.read()
-		end
+	if (turtle.up() == false) then
+		displayBlocked()
+		io.read()
 	end
 end
 
@@ -129,14 +116,9 @@ local function moveDown()
 		doRefuel()
 	end
 	
-	local success = false
-		
-	while not success do
-		success = turtle.down()
-		if not success then
-			displayBlocked()
-			io.read()
-		end
+	if (turtle.down() == false) then
+		displayBlocked()
+		io.read()
 	end
 end
 
@@ -145,14 +127,9 @@ local function turnLeft()
 		doRefuel()
 	end
 	
-	local success = false
-		
-	while not success do
-		success = turtle.turnLeft()
-		if not success then
-			displayBlocked()
-			io.read()
-		end
+	if (turtle.turnLeft() == false) then
+		displayBlocked()
+		io.read()
 	end
 end
 
@@ -161,14 +138,9 @@ local function turnRight()
 		doRefuel()
 	end
 	
-	local success = false
-		
-	while not success do
-		success = turtle.turnRight()
-		if not success then
-			displayBlocked()
-			io.read()
-		end
+	if (turtle.turnRight() == false) then
+		displayBlocked()
+		io.read()
 	end
 end
 
