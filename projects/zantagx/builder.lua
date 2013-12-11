@@ -184,11 +184,8 @@ local function placeForward(distance)
 			displayBlocked()
 			io.read()
 		else
-			getNextSlot()
-			turtle.placeDown()
+			placeBlock()
 		end
-		
-		placeBlock()
 	end
 end
 
