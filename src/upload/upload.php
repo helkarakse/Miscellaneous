@@ -10,7 +10,7 @@
 	$request = $_GET["req"];
 	
 	if ($request == "push") {
-		$text = urldecode(($_GET["json"]));
+		$text = urldecode(($_POST["json"]));
 		$dim = $_GET["dim"];
 		$fileName = $file . "-" . $dim . $fileExt;
 		$handle = fopen($fileName, "w") or die("Cannot open file: " . $fileName);
