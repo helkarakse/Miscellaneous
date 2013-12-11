@@ -31,18 +31,18 @@ local function checkInventoryEmpty()
 end
 
 local function getNextSlot()
-	while (checkInventoryEmpty() == true) do
+	if (checkInventoryEmpty() == true) then
 		print("More materials are required to complete the task.")
 		print("Refill my inventory and press enter to continue.")
 		io.read()
 		currentSlot = 1
-	end
-		
-	while turtle.getItemCount(currentSlot) < 1 do
-		currentSlot = (currentSlot % 15) + 1
-	end
+	else
+		while turtle.getItemCount(currentSlot) < 1 do
+			currentSlot = (currentSlot % 15) + 1
+		end
 	
-	turtle.select(currentSlot)
+		turtle.select(currentSlot)
+	end
 end
 
 -- Refuel by checking fuel levels
