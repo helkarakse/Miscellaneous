@@ -276,7 +276,7 @@ local function init()
 		for i = 1, repeats do
 			buildPillarLayer()
 			buildPillarCapLayer()
-			moveForward(distanceToTravel)
+			moveForward(distanceToTravel + 1)
 			moveDown()
 			moveDown()
 		end
