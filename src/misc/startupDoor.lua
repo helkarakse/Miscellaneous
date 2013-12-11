@@ -10,7 +10,7 @@
 
 -- File array of github links
 local fileArray = {
-	{link = "https://github.com/helkarakse/Miscellaneous/blob/master/src/misc/oteDoor.lua", file = "door"},
+	{link = "https://raw.github.com/helkarakse/Miscellaneous/blob/master/src/misc/oteDoor.lua", file = "door"},
 }
 
 -- This filename is the file that will be executed
