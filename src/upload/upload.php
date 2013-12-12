@@ -22,9 +22,11 @@ if ($request == "push")
 	
 	$dim = $_GET["dim"];
 	$fileName = $file . "-" . $dim . $fileExt;
-	$handle = fopen($fileName, "w") or die("Cannot open file: " . $fileName);
+	$handle = fopen($fileName, "w") or die("Error: Could not open the file for writing.");
 	fwrite($handle, $text);
 	fclose($handle);
+	
+	echo("Updated at: " . date("r", time()));
 }
 else if ($request == "show")
 {
