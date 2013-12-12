@@ -18,9 +18,7 @@ local urlPush = "http://www.otegamers.com/custom/helkarakse/upload.php?req=push&
 local uploadLoop = function()
 	while true do
 		-- only push the document if it changes
-		functions.debug("Checking file size of file")
 		if (fs.getSize(fileName) ~= currentFileSize) then
-			functions.debug("File size is different, pushing...")
 			-- check if the file exists
 			if (fs.exists(fileName)) then
 				-- file exists, store in outputText in preparation to send
@@ -29,21 +27,18 @@ local uploadLoop = function()
 				file.close()
 			end
 			
---			functions.debug(textutils.urlEncode(outputText))
-			
 			-- update the file size to the new one
 			currentFileSize = fs.getSize(fileName)
 			
 			local response = http.post(urlPush, "json=" .. textutils.urlEncode(outputText))
 			if (response) then
 				local responseText = response.readAll()
-				functions.debug("HttpPost successful. Response: ", responseText)
+				functions.debug(responseText)
 				response.close()
 			else
-				functions.debug("Failed to retrieve a response from the server.")
+				functions.debug("Warning: Failed to retrieve response from server")
 			end
 		end
-		functions.debug("File size is the same, continuing loop.")
 		sleep(uploadDelay)
 	end
 end
