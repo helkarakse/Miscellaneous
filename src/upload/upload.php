@@ -14,11 +14,11 @@ $request = $_GET["req"];
 
 if ($request == "push")
 {
-	$text = urldecode(($_POST["json"]));
+	$text = urldecode($_POST["json"]);
 	
 	$array = json_decode($text);
-	$array["last_update"] = date("r", time());
-	$text = json_encode($array);
+	$array[5]["updated"] = date("r", time());
+	$text = stripslashes(json_encode($array));
 	
 	$dim = $_GET["dim"];
 	$fileName = $file . "-" . $dim . $fileExt;
