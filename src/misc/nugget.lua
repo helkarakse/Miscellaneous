@@ -57,6 +57,7 @@ while true do
     -- condense the stacks and pull from iron chest into wood chest
     chest.condenseItems()
     for interimSlot = 1, interimChestSize do
+    	print(interimSlot)
     	local info = chest.getStackInSlot(interimSlot)
     	if (info ~= nil and info["qty"] > 0) then
     		chest.pull("west", interimSlot, 64)
