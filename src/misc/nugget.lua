@@ -1,16 +1,16 @@
 local chest = peripheral.wrap("front")
 local craft_slots = {2, 3, 5, 6, 7, 9, 10, 11}
 while true do
-    for i=1,16 do
+    for i=1, 16 do
         if turtle.getItemCount(i)>0 then
             turtle.select(i)
-            while not turtle.drop() do
-                sleep(120)
-            end
+            turtle.drop()
         end
     end
+    
     for i = 1, chest.getInventorySize() do
         local info = chest.getStackInSlot(i)
+        print(i)
 --        for k, v in pairs(info) do
 --        print(k .. ":" .. v)
 --        end
@@ -36,7 +36,7 @@ while true do
                 end
             end
         end
+        chest.condenseItems()
     end
-    chest.condenseItems()
     sleep(1200)
 end
