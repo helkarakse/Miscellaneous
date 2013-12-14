@@ -25,9 +25,13 @@ while true do
                         turtle.transferTo(k, no/9)
                     end
                     turtle.craft()
-                    while not turtle.drop() do
-                        sleep(120)
-                    end
+                    -- Drop the ingots into the chest
+                    turtle.select(2)
+                    turtle.turnRight()
+                    turtle.drop()
+                    turtle.turnLeft()
+                    -- Drop the leftover nuggets back into the chest
+                    turtle.drop()
                 end
             end
         end
