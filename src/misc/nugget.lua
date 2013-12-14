@@ -57,8 +57,8 @@ while true do
     end
     -- condense the stacks and pull from iron chest into wood chest
     chest.condenseItems()
-	redstone.setBundledOutput("top", colors.white)
+	redstone.setOutput("top", true)
 	sleep(5)
-	redstone.setBundledOutput("top", 0)
+	redstone.setOutput("top", false)
     sleep(60)
 end
