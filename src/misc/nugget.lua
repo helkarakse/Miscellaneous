@@ -1,7 +1,5 @@
 local chest = peripheral.wrap("front")
-local craft = peripheral.wrap("right")
 local slot_number = chest.getInventorySize()
-print(slot_number)
 local craft_slots = {2, 3, 5, 6, 7, 9, 10, 11}
 while true do
     for i=1,16 do
@@ -14,6 +12,7 @@ while true do
     end
     for i = 1, (slot_number-1) do
         local info = chest.getStackInSlot(i)
+        print(info)
          if info then
             if not string.find(info["name"], "Ingot") then
                 if info["qty"]>9 then
