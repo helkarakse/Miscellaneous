@@ -54,5 +54,5 @@ while true do
 		end
 	    chest.condenseItems()
     end
-    sleep(1200)
+    sleep(10)
 end
