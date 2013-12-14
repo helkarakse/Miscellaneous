@@ -2,8 +2,10 @@ local chest = peripheral.wrap("front")
 local craft_slots = {2, 3, 5, 6, 7, 9, 10, 11}
 
 local function dumpExtras()
+	turtle.turnLeft()
 	turtle.select(1)
 	turtle.drop()
+	turtle.turnRight()
 end
 
 local function dumpIngots()
