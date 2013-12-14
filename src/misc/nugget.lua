@@ -1,5 +1,4 @@
 local chest = peripheral.wrap("front")
-local slot_number = chest.getInventorySize()
 local craft_slots = {2, 3, 5, 6, 7, 9, 10, 11}
 while true do
     for i=1,16 do
@@ -10,7 +9,7 @@ while true do
             end
         end
     end
-    for i = 1, (slot_number-1) do
+    for i = 1, chest.getInventorySize() do
         local info = chest.getStackInSlot(i)
 --        for k, v in pairs(info) do
 --        print(k .. ":" .. v)
@@ -18,10 +17,9 @@ while true do
          if info then
             if (string.find(info["name"], "Nugget")) then
                 if (info["qty"] > 9) then
+                	turtle.select(1)
                 	print("push item into slot")
-                    chest.pushItemIntoSlot("right", i, math.floor(info["qty"]/9)*9, 0)
-                    print("selecting 1")
-                    turtle.select(1)
+                    turtle.suck()
                     local no = turtle.getItemCount(1)
                     for j, k in ipairs(craft_slots) do
                         turtle.transferTo(k, no/9)
