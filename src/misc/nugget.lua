@@ -12,13 +12,15 @@ while true do
     end
     for i = 1, (slot_number-1) do
         local info = chest.getStackInSlot(i)
-        for k, v in pairs(info) do
-        print(k .. ":" .. v)
-        end
+--        for k, v in pairs(info) do
+--        print(k .. ":" .. v)
+--        end
          if info then
-            if not string.find(info["name"], "Ingot") then
-                if info["qty"]>9 then
+            if (string.find(info["name"], "Nugget")) then
+                if (info["qty"] > 9) then
+                	print("push item into slot")
                     chest.pushItemIntoSlot("right", i, math.floor(info["qty"]/9)*9, 0)
+                    print("selecting 1")
                     turtle.select(1)
                     local no = turtle.getItemCount(1)
                     for j, k in ipairs(craft_slots) do
