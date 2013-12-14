@@ -12,7 +12,9 @@ while true do
     end
     for i = 1, (slot_number-1) do
         local info = chest.getStackInSlot(i)
-        print(textutils.tabulate(info))
+        for k, v in pairs(info) do
+        print(k .. ":" .. v)
+        end
          if info then
             if not string.find(info["name"], "Ingot") then
                 if info["qty"]>9 then
