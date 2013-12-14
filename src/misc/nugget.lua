@@ -54,5 +54,12 @@ while true do
 		end
 	    chest.condenseItems()
     end
-    sleep(10)
+    -- Take items out of the chest and drop in front
+    for slot = 1, 16 do
+    	turtle.suck()
+    	turtle.turnRight()
+    	turtle.drop()
+    end
+    
+    sleep(60)
 end
