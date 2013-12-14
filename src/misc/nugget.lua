@@ -26,6 +26,7 @@ while true do
         end
     end
     
+    print("Starting nugget crafting process")
     for slotNumber = 1, chest.getInventorySize() do
 		local info = chest.getStackInSlot(slotNumber)
 		if (info ~= nil and (string.find(info["name"], "Nugget")) and info["qty"] > 9) then
