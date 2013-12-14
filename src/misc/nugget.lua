@@ -56,12 +56,8 @@ while true do
     end
     -- condense the stacks and pull from iron chest into wood chest
     chest.condenseItems()
-    for interimSlot = 1, interimChestSize do
---    	print(interimSlot)
---    	local info = chest.getStackInSlot(interimSlot)
---    	if (info ~= nil and info["qty"] > 0) then
-    		chest.pullItem("west", interimSlot, 64)
---    	end
-    end
+	redstone.setBundledOutput("top", colors.white)
+	sleep(5)
+	redstone.setBundledOutput("top", 0)
     sleep(60)
 end
