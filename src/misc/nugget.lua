@@ -8,8 +8,8 @@ local function dumpExtras()
 	turtle.turnRight()
 end
 
-local function dumpIngots()
-	turtle.select(2)
+local function dumpIngots(ingotSlot)
+	turtle.select(ingotSlot)
 	turtle.turnRight()
 	turtle.drop()
 	turtle.turnLeft()
@@ -31,13 +31,24 @@ while true do
 			turtle.select(1)
 			print("Getting items...")
 			turtle.suck()
-			local no = turtle.getItemCount(1)
-			for j, k in ipairs(craft_slots) do
-			    turtle.transferTo(k, no/9)
+			
+			local ingotSlot = 1
+			-- if the nuggets are divisible by 9 properly, then the ingot slot will be in 1
+			local itemCount = turtle.getItemCount(1)
+			if ((itemCount % 9) == 0) then 
+				ingotSlot = 1
+			else
+				ingotSlot = 2
 			end
+			
+			-- dividing the items
+			for j, k in ipairs(craft_slots) do
+			    turtle.transferTo(k, itemCount/9)
+			end
+			
 			turtle.craft()
 			-- Drop the ingots into the chest
-			dumpIngots()
+			dumpIngots(ingotSlot)
 			-- Drop the leftover nuggets into another chest
 		    dumpExtras()
 		end
