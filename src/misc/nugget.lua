@@ -60,7 +60,7 @@ while true do
 --    	print(interimSlot)
 --    	local info = chest.getStackInSlot(interimSlot)
 --    	if (info ~= nil and info["qty"] > 0) then
-    		chest.pull("west", interimSlot, 64)
+    		chest.pullItem("west", interimSlot, 64)
 --    	end
     end
     sleep(60)
