@@ -31,6 +31,7 @@ while true do
                     turtle.drop()
                     turtle.turnLeft()
                     -- Drop the leftover nuggets back into the chest
+                    turtle.select(1)
                     turtle.drop()
                 end
             end
