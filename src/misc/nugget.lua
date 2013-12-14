@@ -4,6 +4,7 @@ local craft_slots = {2, 3, 5, 6, 7, 9, 10, 11}
 local interimChestSize = 54
 
 local function dumpExtras()
+	print("Dumping extra nuggets")
 	turtle.turnLeft()
 	turtle.select(1)
 	turtle.drop()
@@ -11,6 +12,7 @@ local function dumpExtras()
 end
 
 local function dumpIngots(ingotSlot)
+	print("Dumping ingots")
 	turtle.select(ingotSlot)
 	turtle.turnRight()
 	turtle.drop()
@@ -44,10 +46,12 @@ while true do
 			end
 			
 			-- dividing the items
+			print("Splitting up the items for crafting")
 			for j, k in ipairs(craft_slots) do
 			    turtle.transferTo(k, itemCount/9)
 			end
 			
+			print("Crafting the item")
 			turtle.craft()
 			-- Drop the ingots into the chest
 			dumpIngots(ingotSlot)
@@ -56,9 +60,12 @@ while true do
 		end
     end
     -- condense the stacks and pull from iron chest into wood chest
+    print("Stacks condensed")
     chest.condenseItems()
+    print("Triggering the transfer of nuggets to main chest")
 	redstone.setOutput("top", true)
 	sleep(5)
 	redstone.setOutput("top", false)
+	print("Waiting...")
     sleep(60)
 end
