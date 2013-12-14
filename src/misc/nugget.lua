@@ -58,7 +58,7 @@ while true do
     chest.condenseItems()
     for interimSlot = 1, interimChestSize do
     	local info = chest.getStackInSlot(interimSlot)
-    	if (info["qty"] > 0) then
+    	if (info ~= nil and info["qty"] > 0) then
     		chest.pull("west", interimSlot, 64)
     	end
     end
