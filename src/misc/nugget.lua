@@ -1,5 +1,7 @@
 local chest = peripheral.wrap("front")
 local craft_slots = {2, 3, 5, 6, 7, 9, 10, 11}
+-- the temp nugget storage chest
+local interimChestSize = 54
 
 local function dumpExtras()
 	turtle.turnLeft()
@@ -26,7 +28,6 @@ while true do
     
     for slotNumber = 1, chest.getInventorySize() do
 		local info = chest.getStackInSlot(slotNumber)
-		print("Slot number is now: " .. slotNumber)
 		if (info ~= nil and (string.find(info["name"], "Nugget")) and info["qty"] > 9) then
 			turtle.select(1)
 			print("Getting items...")
@@ -52,8 +53,11 @@ while true do
 			-- Drop the leftover nuggets into another chest
 		    dumpExtras()
 		end
-	    chest.condenseItems()
     end
-    
+    -- condense the stacks and pull from iron chest into wood chest
+    chest.condenseItems()
+    for interimSlot = 1, interimChestSize do
+    	chest.pull("west", interimSlot, 64)
+    end
     sleep(60)
 end
