@@ -7,14 +7,15 @@ function printTps($array) {
 }
 
 $dimension = $_GET["dim"];
+$filename = "tick-" . $dimension . ".txt";
 
-if ($dimension == 1) {
-	$json = file_get_contents("http://otegamers.com/custom/helkarakse/upload.php?req=show&dim=1");
-} elseif ($dimension == 2) {
-	$json = file_get_contents("http://otegamers.com/custom/helkarakse/upload.php?req=show&dim=2");
-}
+$handle = fopen($filename, "r");
+$json = fread($handle, filesize($filename));
+fclose($handle);
 
 $array = ($json != "") ? json_decode($json) : array();
+
+var_dump($array);
 
 (count($array) > 0) ? printTps($array[0]) : print("Unknown");
 ?>
