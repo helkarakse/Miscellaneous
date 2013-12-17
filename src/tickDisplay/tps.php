@@ -15,7 +15,5 @@ fclose($handle);
 
 $array = ($json != "") ? json_decode($json) : array();
 
-var_dump($array);
-
 (count($array) > 0) ? printTps($array[0]) : print("Unknown");
 ?>
