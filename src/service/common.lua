@@ -6,11 +6,10 @@ Helkarakse 20131225
 
 ]]
 
--- Libraries
-os.loadAPI("data")
+-- Variables
+local commandPrefix = "//"
 
 -- References
-local data = data
 local string = string
 
 -- Functions
@@ -21,5 +20,5 @@ function sendMessage(map, username, message)
 end
 
 function stripPrefix(message)
-	return string.sub(message, string.len(data.commandPrefix) + 1)
+	return string.sub(message, string.len(commandPrefix) + 1)
 end
