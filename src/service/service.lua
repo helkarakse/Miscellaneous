@@ -19,7 +19,7 @@ local os = os
 local string = string
 
 -- Variables
-local map, command
+local map, commandBlock
 local commandPrefix = "//"
 local serviceArray = {
 	{command = "/toggledownfall", cost = 3, keyword = "rain", description = "Turns rain on or off", announcement = " has toggled downfall in the overworld."},
@@ -62,9 +62,9 @@ end
 
 -- runs a command then clears the block
 local function runCommand(command)
-	command.setCommand(command)
-	command.runCommand()
-	command.setCommand("")
+	commandBlock.setCommand(command)
+	commandBlock.runCommand()
+	commandBlock.setCommand("")
 end
 
 local function makeAnnouncement(dimension, serviceId)
@@ -147,7 +147,7 @@ local function main()
 	end
 
 	-- Command blocks have no type for peripheral, will have to hard code direction
-	command = peripheral.wrap("left")
+	commandBlock = peripheral.wrap("left")
 	functions.debug("Command block detected and wrapped.")
 
 	parallel.waitForAll(chatEvent)
