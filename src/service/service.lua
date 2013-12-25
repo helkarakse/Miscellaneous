@@ -21,6 +21,9 @@ local string = string
 -- Variables
 local map, command
 local commandPrefix = "//"
+local serviceArray = {
+	{command = "/toggledownfall", cost = 3, keyword = "rain", description = "Turns rain on or off", announcement = " has toggled downfall in the overworld."},
+}
 
 -- Wrappers
 -- send message wrapper
@@ -29,6 +32,22 @@ local function sendMessage(username, message)
 end
 
 -- Functions
+-- returns an array of players in dimId
+local function getPlayers(dimId)
+	local returnArray = {}
+	local players = map.getPlayerUsernames()
+	for key, value in pairs(players) do
+		local player = map.getPlayerByName(value)
+		local playerEntity = player.asEntity()
+		local playerDim = playerEntity.getWorldID()
+		if (playerDim == tonumber(dimId)) then
+			table.insert(returnArray, value)
+		end
+	end
+
+	return returnArray
+end
+
 -- runs a command then clears the block
 local function runCommand(command)
 	command.setCommand(command)
@@ -36,13 +55,27 @@ local function runCommand(command)
 	command.setCommand("")
 end
 
+local function makeAnnouncement(id)
+	-- only announce to players in overworld
+	local playerArray = getPlayers(0)
+	for key, value in pairs(playerArray) do
+		sendMessage(value, value .. serviceArray[id].announcement)
+	end
+end
+
 -- Handlers
 local function serviceHandler(username, message, args)
 	local check = switch {
 		["list"] = function()
+			for i = 1, #serviceArray do
+				sendMessage(username, "//service buy " .. serviceArray[i].keyword .. " - " .. serviceArray[i].description .. " - $" .. serviceArray[i].cost)
+			end
 		end,
 		["help"] = function()
 			sendMessage(username, "Usage: //service list")
+		end,
+		["buy"] = function()
+
 		end,
 		default = function()
 			-- respond that the command is not found
