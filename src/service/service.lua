@@ -48,6 +48,16 @@ local function getPlayers(dimId)
 	return returnArray
 end
 
+-- returns the id of a service keyword
+local function getServiceId(keyword)
+	local returnId = 0
+	for i = 1, #serviceArray do
+		if (serviceArray[i].keyword == keyword) then
+			return i
+		end
+	end
+end
+
 -- runs a command then clears the block
 local function runCommand(command)
 	command.setCommand(command)
@@ -67,15 +77,24 @@ end
 local function serviceHandler(username, message, args)
 	local check = switch {
 		["list"] = function()
+			-- iterate through the service table and show the data
 			for i = 1, #serviceArray do
 				sendMessage(username, "//service buy " .. serviceArray[i].keyword .. " - " .. serviceArray[i].description .. " - $" .. serviceArray[i].cost)
 			end
 		end,
 		["help"] = function()
+			-- basic help
 			sendMessage(username, "Usage: //service list")
 		end,
 		["buy"] = function()
-
+			-- search through the service list and check to see if the keyword exists
+			local id = getServiceId
+			if (id > 0) then
+				
+			else
+				-- id did not exist, tell user
+				sendMessage(username, "Usage: //service list")
+			end
 		end,
 		default = function()
 			-- respond that the command is not found
