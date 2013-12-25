@@ -65,11 +65,11 @@ local function runCommand(command)
 	command.setCommand("")
 end
 
-local function makeAnnouncement(id)
+local function makeAnnouncement(dimension, serviceId)
 	-- only announce to players in overworld
-	local playerArray = getPlayers(0)
+	local playerArray = getPlayers(dimension)
 	for key, value in pairs(playerArray) do
-		sendMessage(value, value .. serviceArray[id].announcement)
+		sendMessage(value, value .. serviceArray[serviceId].announcement)
 	end
 end
 
@@ -90,7 +90,10 @@ local function serviceHandler(username, message, args)
 			-- search through the service list and check to see if the keyword exists
 			local id = getServiceId
 			if (id > 0) then
-				
+				local serviceRow = serviceArray[id]
+				runCommand(serviceRow.command)
+				-- eco command goes here
+				makeAnnouncement(0, id)
 			else
 				-- id did not exist, tell user
 				sendMessage(username, "Usage: //service list")
