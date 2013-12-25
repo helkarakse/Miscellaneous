@@ -88,14 +88,19 @@ local function serviceHandler(username, message, args)
 		end,
 		["buy"] = function()
 			-- search through the service list and check to see if the keyword exists
-			local id = getServiceId
-			if (id > 0) then
-				local serviceRow = serviceArray[id]
-				runCommand(serviceRow.command)
-				-- eco command goes here
-				makeAnnouncement(0, id)
+			local keyword = args[3]
+			if (keyword ~= nil and keyword ~= "") then
+				local id = getServiceId(keyword)
+				if (id > 0) then
+					local serviceRow = serviceArray[id]
+					runCommand(serviceRow.command)
+					-- eco command goes here
+					makeAnnouncement(0, id)
+				else
+					-- id did not exist, tell user
+					sendMessage(username, "Usage: //service list")
+				end
 			else
-				-- id did not exist, tell user
 				sendMessage(username, "Usage: //service list")
 			end
 		end,
