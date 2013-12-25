@@ -56,6 +56,8 @@ local function getServiceId(keyword)
 			return i
 		end
 	end
+
+	return returnId
 end
 
 -- runs a command then clears the block
@@ -92,8 +94,8 @@ local function serviceHandler(username, message, args)
 			if (keyword ~= nil and keyword ~= "") then
 				local id = getServiceId(keyword)
 				if (id > 0) then
-					local serviceRow = serviceArray[id]
-					runCommand(serviceRow.command)
+					sendMessage(username, "You have bought the " .. serviceArray[id].keyword .. " service for $" .. serviceArray[id].cost)
+					runCommand(serviceArray[id].command)
 					-- eco command goes here
 					makeAnnouncement(0, id)
 				else
