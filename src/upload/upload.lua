@@ -62,6 +62,7 @@ local function init()
 		map = peripheral.wrap(mapDir)
 		functions.debug("Map peripheral detected and wrapped.")
 	else
+		map = nil
 		functions.debug("No map peripheral detected.")
 	end
 
