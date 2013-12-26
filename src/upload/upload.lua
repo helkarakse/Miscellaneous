@@ -13,7 +13,7 @@ local dimension = string.sub(os.getComputerLabel(), 1, 1)
 local outputText
 local currentFileSize = 0
 local uploadDelay = 30
-local urlPush = "http://dev.otegamers.com/helkarakse/tps/upload.php?req=push&dim=" .. dimension
+local urlPush = "http://dev.otegamers.com/helkarakse/tps/upload.php?req=put&dim=" .. dimension
 
 local uploadLoop = function()
 	while true do
