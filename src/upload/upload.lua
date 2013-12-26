@@ -18,8 +18,7 @@ local outputText, map
 local currentFileSize = 0
 local uploadDelay = 30
 
--- local urlPush = "http://dev.otegamers.com/helkarakse/tps/upload.php?req=put&dim=" .. dimension
-local urlPush = "http://dev.otegamers.com/framework/index.php?c=upload&m=put&server=" .. server .. "&type=" .. dimension
+local urlPush = "http://dev.otegamers.com/helkarakse/index.php?c=upload&m=put&server=" .. server .. "&type=" .. dimension
 
 -- Functions
 local uploadLoop = function()
