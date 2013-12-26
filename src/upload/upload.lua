@@ -14,7 +14,7 @@ os.loadAPI("json")
 local fileName = "profile.txt"
 local dimension = string.sub(os.getComputerLabel(), 1, 1)
 local server = string.lower(string.sub(os.getComputerLabel(), 2))
-local outputText, map
+local outputText, map = "", nil
 local currentFileSize = 0
 local uploadDelay = 30
 
@@ -37,7 +37,11 @@ local uploadLoop = function()
 			currentFileSize = fs.getSize(fileName)
 
 			-- get the current array of players ingame
-			local playerArray = map.getPlayerUsernames()
+			if (map ~= nil) then
+				local playerArray = map.getPlayerUsernames()
+			else
+				local playerArray = {}
+			end
 			
 			local response = http.post(urlPush, "json=" .. textutils.urlEncode(outputText) .. "&players=" .. textutils.urlEncode(json.encode(playerArray)))
 			if (response) then
@@ -58,8 +62,7 @@ local function init()
 		map = peripheral.wrap(mapDir)
 		functions.debug("Map peripheral detected and wrapped.")
 	else
-		functions.debug("No map peripheral detected. This is required.")
-		return
+		functions.debug("No map peripheral detected.")
 	end
 
 	if (fs.exists(fileName)) then
