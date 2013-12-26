@@ -11,6 +11,7 @@
 -- File array of github links
 local fileArray = {
 	{link = "https://raw.github.com/helkarakse/LuaLibs/master/src/common/functions.lua", file = "functions"},
+	{link = "https://raw.github.com/helkarakse/LuaLibs/master/src/libs/libJson.lua", file = "json"},
 	{link = "https://raw.github.com/helkarakse/Miscellaneous/master/src/upload/upload.lua", file = "upload"}
 }
 
