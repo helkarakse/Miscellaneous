@@ -13,7 +13,7 @@ os.loadAPI("json")
 -- Variables
 local fileName = "profile.txt"
 local dimension = string.sub(os.getComputerLabel(), 1, 1)
-local server = string.sub(os.getComputerLabel(), 2)
+local server = string.lower(string.sub(os.getComputerLabel(), 2))
 local outputText, map
 local currentFileSize = 0
 local uploadDelay = 30
