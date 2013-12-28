@@ -22,7 +22,9 @@ local string = string
 local map, commandBlock
 local commandPrefix = "//"
 local serviceArray = {
-	{command = "/toggledownfall", cost = 3, keyword = "rain", description = "Turns rain on or off", announcement = " has toggled downfall in the overworld."},
+	{command = "/weather sun", cost = 2.5, keyword = "clearskies", description = "Turns rain off", announcement = " has cleared the skies!"},
+	{command = "/time day", cost = 2.5, keyword = "day", description = "Changes the time to day", announcement = " has made it day!"},
+	{command = "/time night", cost = 2.5, keyword = "night", description = "Changes the time to night", announcement = " has made it night!"},
 }
 
 -- Wrappers
