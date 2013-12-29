@@ -66,14 +66,15 @@ end
 local function runCommand(command)
 	commandBlock.setCommand(command)
 	commandBlock.runCommand()
+	functions.debug("Running command:", command)
 	commandBlock.setCommand("")
 end
 
-local function makeAnnouncement(dimension, serviceId)
+local function makeAnnouncement(dimension, serviceId, username)
 	-- only announce to players in overworld
 	local playerArray = getPlayers(dimension)
 	for key, value in pairs(playerArray) do
-		sendMessage(value, value .. serviceArray[serviceId].announcement)
+		sendMessage(value, username .. serviceArray[serviceId].announcement)
 	end
 end
 
@@ -98,8 +99,8 @@ local function serviceHandler(username, message, args)
 				if (id > 0) then
 					sendMessage(username, "You have bought the " .. serviceArray[id].keyword .. " service for $" .. serviceArray[id].cost)
 					runCommand(serviceArray[id].command)
-					-- eco command goes here
-					makeAnnouncement(0, id)
+					runCommand("/eco take " .. username .. " " .. serviceArray[id].cost)
+					makeAnnouncement(0, id, username)
 				else
 					-- id did not exist, tell user
 					sendMessage(username, "Usage: //service list")
@@ -109,8 +110,6 @@ local function serviceHandler(username, message, args)
 			end
 		end,
 		default = function()
-			-- respond that the command is not found
-			sendMessage(username, "Usage: //service list")
 		end,
 	}
 
