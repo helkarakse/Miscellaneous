@@ -12,7 +12,7 @@ local functions = functions
 
 -- Variables
 local modem, port
-local modemFrequency, maxStorage = 1000, 10000000
+local modemFrequency, cutoffThreshold = 1000, 9500000
 
 -- Functions
 
@@ -21,7 +21,7 @@ local portLoop = function()
 	while true do
 		-- checks if the reactor is fully formed first
 		if (port.getConnected()) then
-			if (port.getEnergyStored() >= maxStorage) then
+			if (port.getEnergyStored() >= cutoffThreshold) then
 				if (port.getActive()) then
 					-- reactor is full, turn off
 					port.setActive(false)
