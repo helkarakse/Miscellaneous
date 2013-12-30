@@ -10,14 +10,12 @@ Changelog:
 
 -- File array of github links
 local fileArray = {
+	{link = "https://raw.github.com/helkarakse/Miscellaneous/blob/master/src/reactor/reactor.lua", file = "reactor"},
 	{link = "https://raw.github.com/helkarakse/LuaLibs/master/src/common/functions.lua", file = "functions"},
-	{link = "https://raw.github.com/helkarakse/LuaLibs/master/src/libs/libNbt.lua", file = "libNbt"},
-	{link = "https://raw.github.com/helkarakse/Miscellaneous/master/src/service/common.lua", file = "common"},
-	{link = "https://raw.github.com/helkarakse/Miscellaneous/master/src/service/service.lua", file = "service"},
 }
 
 -- This filename is the file that will be executed
-local indexFile = "service"
+local indexFile = "reactor"
 
 -- Set to true to overwrite files
 local overwrite = true

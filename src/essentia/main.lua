@@ -3,7 +3,7 @@
 	Essentia Main Version 1.0 Alpha
 	Do not modify, copy or distribute without permission of author
 	Helkarakse, 20131209
-	]]
+]]
 
 -- Libraries
 os.loadAPI("functions")
