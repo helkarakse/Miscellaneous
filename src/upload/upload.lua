@@ -53,6 +53,8 @@ local uploadLoop = function()
 end
 
 local function init()
+	functions.debug("URL is: " .. urlPush);
+	
 	local hasMap, mapDir = functions.locatePeripheral("adventure map interface")
 	if (hasMap) then
 		map = peripheral.wrap(mapDir)
