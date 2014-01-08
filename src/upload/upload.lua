@@ -18,7 +18,7 @@ local outputText, map = "", nil
 local currentFileSize = 0
 local uploadDelay = 30
 
-local urlPush = "http://dev.otegamers.com/api/v1/tps/store/" .. server .. "/" .. dimension
+local urlPush = "http://dev.otegamers.com/api/v1/tps/put/" .. server .. "/" .. dimension
 
 -- Functions
 local uploadLoop = function()
