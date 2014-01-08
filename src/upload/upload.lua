@@ -16,7 +16,7 @@ local outputText, map = "", nil
 local currentFileSize = 0
 local uploadDelay = 30
 
-local urlPush = "http://dev.otegamers.com/index.php?c=upload&m=put&server=ftb&type=unleashed"
+local urlPush = "http://dev.otegamers.com/api/v1/tps/get/fu/1"
 
 -- Functions
 local uploadLoop = function()
