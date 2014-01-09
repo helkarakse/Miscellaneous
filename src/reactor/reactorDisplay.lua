@@ -11,7 +11,7 @@ os.loadAPI("functions")
 local functions = functions
 
 -- Variables
-local modem, port
+local modem, monitor
 local modemFrequency = 1000
 
 -- Functions
@@ -51,7 +51,7 @@ local function init()
 
 	local hasMonitor, monitorDir = functions.locatePeripheral("monitor")
 	if (hasMonitor) then
-		port = peripheral.wrap(monitorDir)
+		monitor = peripheral.wrap(monitorDir)
 	else
 		functions.error("No monitor detected.")
 		return
