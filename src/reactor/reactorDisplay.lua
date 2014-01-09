@@ -12,29 +12,29 @@ local functions = functions
 
 -- Variables
 local modem, port
-local modemFrequency, maxStorage = 1000, 10000000
+local modemFrequency = 1000
 
 -- Functions
+local function updateMonitor(packet)
+	monitor.clear()
+	monitor.setCursorPos(1, 1)
+	monitor.write("Reactor Status: " .. packet.temperature .. "[" .. packet.status .. "]")
+	monitor.setCursorPos(1, 2)
+	monitor.write("Reactor Energy: " .. packet.power .. "@" .. packet.rate .. " RF/t")
+	monitor.setCursorPos(1, 3)
+	monitor.write("Reactor Control Rods: " .. packet.rods .. "@" .. packet.controlLevel .. "%")
+	monitor.setCursorPos(1, 4)
+	monitor.write("Fuel %: " .. packet.fuel)
+end
 
 -- Loops/Handlers
-local monitorLoop = function()
+local modemLoop = function()
 	while true do
-		-- checks if the reactor is fully formed first
-		if (port.getConnected()) then
-			if (port.getEnergyStored() >= maxStorage) then
-				if (port.getActive()) then
-					-- reactor is full, turn off
-					port.setActive(false)
-					functions.info("Reactor storage is full, turning off the reactor.")
-				end
-			else
-				if (port.getActive() == false) then
-					port.setActive(true)
-					functions.info("Reactor storage is not full, turning on the reactor.")
-				end
-			end
+		local _, side, freq, rfreq, message = os.pullEvent('modem_message')
+		if (freq == modemFrequency) then
+			functions.debug("Message received from modem: ", message)
+			updateMonitor(textutils.unserialize(message))
 		end
-		sleep(15)
 	end
 end
 
@@ -57,7 +57,7 @@ local function init()
 		return
 	end
 
-	parallel.waitForAll(monitorLoop)
+	parallel.waitForAll(modemLoop)
 end
 
 init()
