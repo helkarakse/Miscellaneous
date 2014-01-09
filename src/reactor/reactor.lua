@@ -50,7 +50,7 @@ local portLoop = function()
 				rods = port.getNumberOfControlRods(),
 				temperature = port.getTemperature(),
 				fuel = ((port.getFuelAmount() / port.getFuelAmountMax()) * 100),
-				controlLevel = port.getControlRodLevel(),
+				controlLevel = port.getControlRodLevel(1),
 				rate = port.getEnergyProducedLastTick()
 			}
 
