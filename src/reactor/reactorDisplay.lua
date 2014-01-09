@@ -18,7 +18,7 @@ local modemFrequency = 1000
 local function updateMonitor(packet)
 	monitor.clear()
 	monitor.setCursorPos(3, 3)
-	monitor.write("Reactor Status: " .. packet.temperature .. " [" .. packet.status .. "]")
+	monitor.write("Reactor Status: " .. packet.temperature .. "'C [" .. packet.status .. "]")
 	monitor.setCursorPos(3, 5)
 	monitor.write("Reactor Energy: " .. packet.power .. " RF @" .. packet.rate .. " RF/t")
 	monitor.setCursorPos(3, 7)
