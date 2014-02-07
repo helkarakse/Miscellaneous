@@ -1,9 +1,9 @@
 --[[
 
-	TickDump Version 0.1 Dev
-	Do not modify, copy or distribute without permission of author
-	Helkarakse, 20131210
-	
+TickDump Version 0.1 Dev
+Do not modify, copy or distribute without permission of author
+Helkarakse, 20131210
+
 ]]
 
 -- Libraries
@@ -32,14 +32,15 @@ local uploadLoop = function()
 				outputText = file.readAll()
 				file.close()
 			end
-			
+
 			-- update the file size to the new one
 			currentFileSize = fs.getSize(fileName)
 
-			-- get the current array of players ingame
-			local playerArray = map.getPlayerUsernames()
-			
-			local response = http.post(urlPush, "json=" .. textutils.urlEncode(outputText) .. "&players=" .. textutils.urlEncode(json.encode(playerArray)))
+			--			-- get the current array of players ingame
+			--			local playerArray = map.getPlayerUsernames()
+
+			--			local response = http.post(urlPush, "json=" .. textutils.urlEncode(outputText) .. "&players=" .. textutils.urlEncode(json.encode(playerArray)))
+			local response = http.post(urlPush, "json=" .. textutils.urlEncode(outputText))
 			if (response) then
 				local responseText = response.readAll()
 				functions.debug(responseText)
@@ -53,17 +54,16 @@ local uploadLoop = function()
 end
 
 local function init()
-	functions.debug("URL is: " .. urlPush);
-	
-	local hasMap, mapDir = functions.locatePeripheral("adventure map interface")
-	if (hasMap) then
-		map = peripheral.wrap(mapDir)
-		functions.debug("Map peripheral detected and wrapped.")
-	else
-		functions.debug("No map peripheral detected.")
-		return;
-	end
-
+--	functions.debug("URL is: " .. urlPush);
+--
+--	local hasMap, mapDir = functions.locatePeripheral("adventure map interface")
+--	if (hasMap) then
+--		map = peripheral.wrap(mapDir)
+--		functions.debug("Map peripheral detected and wrapped.")
+--	else
+--		functions.debug("No map peripheral detected.")
+--		return;
+--	end
 	if (fs.exists(fileName)) then
 		parallel.waitForAll(uploadLoop)
 	end
